@@ -792,6 +792,36 @@ export function isUltrathinkEnabled(): boolean {
 
 The `feature()` call is resolved at build time by `bun:bundle`. In external builds, `ULTRATHINK` is `false`, so the entire function body including the GrowthBook call is dead-code-eliminated. In internal builds, the runtime GrowthBook flag provides dynamic control.
 
+### 10.4 Complete Feature Flag Enumeration
+
+Across the entire codebase, **16 compile-time feature flags** (Tier 1) and **19+ runtime GrowthBook flags** (Tier 3) have been identified:
+
+**Compile-Time Flags** (resolved by `bun:bundle`, dead-code-eliminated when `false`):
+
+| Flag | Controls | Status in Published Build |
+|------|----------|:------------------------:|
+| `VOICE_MODE` | Voice input/recording | ❌ Stripped |
+| `KAIROS` | Autonomous agent mode | ❌ Stripped |
+| `DAEMON` | Background process management | ❌ Stripped |
+| `COORDINATOR_MODE` | Multi-agent coordination | ❌ Stripped |
+| `ULTRATHINK` | Extended thinking mode | ❌ Stripped |
+| `ULTRAPLAN` | Advanced multi-step planning | ❌ Stripped |
+| `AUTO_DREAM` | Background memory consolidation | ❌ Stripped |
+| `BUDDY` | Virtual companion system | ❌ Stripped |
+| `MORERIGHT` | Context window extension | ❌ Stripped |
+| `DXT` | Plugin packaging tool | ❌ Stripped |
+| `COMMIT_ATTRIBUTION` | Enhanced PR attribution trailers | ❌ Stripped |
+| `PROACTIVE` | Proactive agent suggestions | ❌ Stripped |
+| `AGENT_SWARMS` | Multi-agent team creation | ✅ Available |
+| `WEB_BROWSER_TOOL` | Browser automation | ✅ Available |
+| `HISTORY_SNIP` | History snipping | ✅ Available |
+| `WORKFLOW_SCRIPTS` | Workflow script execution | ✅ Available |
+
+**Runtime GrowthBook Flags** (Tier 3, `tengu_*` naming convention):
+> → See [Episode 17: Telemetry & Ops](17-telemetry-privacy-operations.md) §5.1 for the complete 19-flag enumeration with decoded purposes.
+
+The three-tier system (Compile-Time DCE → Environment Check → GrowthBook) ensures defense in depth: even if a runtime flag is accidentally enabled, the compile-time gate prevents the code from existing in the binary at all.
+
 ---
 
 ## Transferable Design Patterns

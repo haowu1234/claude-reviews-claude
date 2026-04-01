@@ -482,6 +482,8 @@ export type RemoteAgentTaskState = TaskStateBase & {
 
 UltraPlan extends the agent paradigm to remote execution via CCR (Claude Code Runner), enabling plan-then-execute workflows where the plan is generated remotely and must receive user approval before implementation begins.
 
+> → For the full inventory of 11 unreleased agent tools (SleepTool, PushNotificationTool, SubscribePRTool, DaemonTool, CoordinatorTool, MorerightTool, DreamConsolidationTool, DxtTool, UltraplanTool, VoiceInputTool, BuddyTool) and their feature gates, see [Episode 17: Telemetry & Ops](17-telemetry-privacy-operations.md) §9.5.
+
 ---
 
 ## Summary

@@ -47,6 +47,7 @@
 | 14 | **UI 与状态管理** | Ink 渲染引擎、React 协调器、Vim 模式、Computer Use（140+ 组件） | [阅读 →](architecture/zh-CN/14-ui-state-management.md) |
 | 15 | **服务与 API 层** | API 客户端、流重组、MCP 服务器管理、OAuth 认证（1.2万行代码） | [阅读 →](architecture/zh-CN/15-services-api-layer.md) |
 | 16 | **基础设施与配置** | 设置合并管道、GrowthBook 功能开关、遥测、构建系统（1.5万行代码） | [阅读 →](architecture/zh-CN/16-infrastructure-config.md) |
+| 17 | **遥测、隐私与运营控制** | 双通道遥测、模型代号、卧底模式、远程紧急开关、未来路线图 | [阅读 →](architecture/zh-CN/17-telemetry-privacy-operations.md) |
 
 > ⭐ **喜欢这种“套娃”感吗？给这个仓库点个赞吧 —— 一个正在分析自己的 AI 值得拥有这颗星。**
 
@@ -166,7 +167,8 @@ claude-code-deep-dive/
 │   ├── 14-ui-state-management.md      # UI 与状态管理
 │   ├── 15-services-api-layer.md       # 服务与 API 层
 │   ├── 16-infrastructure-config.md    # 基础设施与配置
-│   └── zh-CN/                         # 🇨🇳 中文版架构解析（17 篇对照）
+│   ├── 17-telemetry-privacy-operations.md  # 遥测、隐私与运营控制
+│   └── zh-CN/                         # 🇨🇳 中文版架构解析（18 篇对照）
 │       ├── 00-overview.md
 │       └── ...
 ```
@@ -193,9 +195,10 @@ claude-code-deep-dive/
 - [x] UI 与状态管理 —— Ink 渲染引擎、Vim 模式 (140+ 组件)
 - [x] 服务与 API 层 —— 流重组、MCP 服务器 (1.2万行)
 - [x] 基础设施与配置 —— 设置合并、功能开关、遥测 (1.5万行)
+- [x] 遥测、隐私与运营控制 —— 双通道分析、卧底模式、远程开关 (825行)
 
 **本地化**
-- [x] 全 17 篇中英双语对照
+- [x] 全 18 篇中英双语对照
 
 ---
 

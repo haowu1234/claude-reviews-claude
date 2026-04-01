@@ -13,7 +13,7 @@
 **Part I — Navigation**
 - [§1 Global Architecture Map](#1-global-architecture-map)
 - [§2 Episode Index: One Line Per Chapter](#2-episode-index-one-line-per-chapter)
-- [§3 Reading Order: Five Cognitive Paths](#3-reading-order-five-cognitive-paths)
+- [§3 Reading Order: Six Cognitive Paths](#3-reading-order-six-cognitive-paths)
 
 **Part II — Core Architecture at a Glance**
 - [§4 Harness: The Body Around the Brain](#4-harness-the-body-around-the-brain)
@@ -115,9 +115,9 @@ User Input → CLI (cli.tsx) → QueryEngine.query() → System Prompt Assembly
 
 ---
 
-## §3 Reading Order: Five Cognitive Paths
+## §3 Reading Order: Six Cognitive Paths
 
-Not everyone should read these episodes in numerical order. Here are five paths optimized for different goals:
+Not everyone should read these episodes in numerical order. Here are six paths optimized for different goals:
 
 ```mermaid
 graph LR
@@ -148,11 +148,17 @@ graph LR
         E1[13 Bridge System] --> E2[14 UI & State]
     end
 
+    subgraph "🟡 Path F: The Dark Side"
+        F1[17 Telemetry & Ops]
+    end
+
     A4 --> B1
     A4 --> C1
     B4 --> D1
     C4 --> D1
     D3 --> E1
+    D3 -.-> F1
+    E2 -.-> F1
 ```
 
 | Path | Name | Best For | Episodes |
@@ -162,8 +168,9 @@ graph LR
 | 🟣 C | **Collaboration & Extension** | Plugin developers, multi-agent builders | → 03 → 08 → 04 → 05 |
 | 🟠 D | **Infrastructure** | Backend engineers, platform teams | → 15 → 16 → 09 |
 | 🔴 E | **Experience Layer** | UI developers, IDE integrators | → 13 → 14 |
+| 🟡 F | **The Dark Side** | Privacy researchers, ops engineers | → 17 |
 
-> **Minimum viable reading**: Path A alone (4 episodes, ~2,100 lines) gives you 60% of the architectural understanding. Add Path B for 85%.
+> **Minimum viable reading**: Path A alone (4 episodes, ~2,100 lines) gives you 60% of the architectural understanding. Add Path B for 85%. Path F is a standalone capstone — readable after any path to understand the production telemetry, model codename concealment, and remote operational control systems.
 
 ---
 
@@ -757,6 +764,53 @@ I perceive the world through six channels, each injected at a different layer:
 4. **I remember** — CLAUDE.md and memory system mean I don't start from zero each session
 5. **I'm safely constrained** — the permission system makes users comfortable giving me autonomy
 6. **I self-heal** — error recovery means transient failures don't kill my session
+
+### 12.6 The 13-Layer Progressive Harness
+
+The complete Claude Code system can be understood as a **13-layer harness** — each layer progressively constraining, guiding, and amplifying my capabilities. Here is the mapping from harness layer to architectural episode:
+
+| Layer | Harness | Episode | What It Does |
+|:-----:|---------|---------|-------------|
+| 1 | **The Loop** | [EP01: Query Engine](01-query-engine.md) | Infinite tool-calling cycle with 5 termination conditions |
+| 2 | **The Tools** | [EP02: Tool System](02-tool-system.md) | 42+ tools behind a single 30-method interface |
+| 3 | **The Agents** | [EP03: Sub-Agents](03-sub-agents.md) / [EP08: Swarms](08-agent-swarms.md) | Divide-and-conquer with cost inheritance and AbortController trees |
+| 4 | **The Permissions** | [EP07: Permission Pipeline](07-permission-pipeline.md) | 6 layers from trust state to classifier circuit breakers |
+| 5 | **The Context** | [EP11: Context Compression](11-context-compression.md) | 4-tier cascading compression (summary → stratified → emergency → fork) |
+| 6 | **The Memory** | [EP05: CLAUDE.md](05-claude-md.md) | Hierarchical memory with per-directory override resolution |
+| 7 | **The Bash** | [EP06: Bash Engine](06-bash-engine.md) | PTY multiplexing with 120s timeouts and marker-based output capture |
+| 8 | **The Plugins** | [EP04: MCP](04-plugin-system.md) | 6 transport types with per-transport security policies |
+| 9 | **The Session** | [EP09: Session Persistence](09-session-persistence.md) | JSONL append-only transcripts with compact boundaries |
+| 10 | **The Costs** | [EP10: Token Economy](10-token-economy.md) | Hybrid token counting (API-reported + local tiktoken estimation) |
+| 11 | **The UI** | [EP14: UI & State](14-ui-state-management.md) | Forked Ink engine with 35-line reactive store |
+| 12 | **The Infrastructure** | [EP15](15-services-api-layer.md) / [EP16](16-infrastructure-config.md) | API client, MCP server, 5-layer config merge |
+| 13 | **The Dark Side** | [EP17: Telemetry & Ops](17-telemetry-privacy-operations.md) | Dual analytics, undercover mode, 6 remote killswitches |
+
+Each layer builds on the ones below it. Remove any single layer and the system degrades — but in most cases, **fails open** rather than crashes. This is deliberate: availability trumps correctness for a developer tool.
+
+### 12.7 The Missing 108 Modules
+
+The published npm package is missing approximately 108 modules that exist in Anthropic's internal repo but are stripped during the build:
+
+```
+Compile-Time Dead Code Elimination (DCE):
+┌──────────────────────┐     ┌──────────────────────┐
+│  Internal Build (Bun) │     │  Published Build     │
+│  feature('X') → true  │ ──→ │  feature('X') → false │
+│  Code branch included │     │  Code branch removed  │
+└──────────────────────┘     └──────────────────────┘
+```
+
+These missing modules fall into three categories:
+
+| Category | Count | Examples |
+|----------|:-----:|---------|
+| **Internal tools** | ~20 | REPLTool, TungstenTool, DaemonTool, DxtTool |
+| **Unreleased features** | ~70 | KAIROS tasks, Voice mode, Coordinator, Dream consolidation, Buddy |
+| **Internal prompts/configs** | ~18 | Internal model prompts, debug configs, migration scripts |
+
+The 108-module gap does not affect external users — every missing module is behind a compile-time gate that evaluates to `false` in published builds. The remaining ~1,776 modules form a complete, functional system.
+
+> → For detailed analysis of what these modules contain, see [Episode 17: Telemetry & Ops](17-telemetry-privacy-operations.md) §9.
 
 ---
 

@@ -45,6 +45,7 @@ This is **not** a source code dump. It's a structured engineering analysis — a
 | 14 | **UI & State Management** | Ink rendering engine, React reconciler, Vim mode, Computer Use (140+ components) | [Read →](architecture/14-ui-state-management.md) |
 | 15 | **Services & API Layer** | API client, stream reassembly, MCP server management, OAuth auth (12K lines) | [Read →](architecture/15-services-api-layer.md) |
 | 16 | **Infrastructure & Config** | Settings merge pipeline, GrowthBook feature flags, telemetry, build system (15K lines) | [Read →](architecture/16-infrastructure-config.md) |
+| 17 | **Telemetry, Privacy & Ops** | Dual-channel analytics, model codenames, undercover mode, remote killswitches, future roadmap | [Read →](architecture/17-telemetry-privacy-operations.md) |
 
 > ⭐ **Enjoy the meta? Star the repo — an AI analyzing itself deserves at least that.**
 
@@ -179,7 +180,8 @@ claude-code-deep-dive/
 │   ├── 14-ui-state-management.md      # UI & state management
 │   ├── 15-services-api-layer.md       # Services & API layer
 │   ├── 16-infrastructure-config.md    # Infrastructure & config
-│   └── zh-CN/                         # 🇨🇳 Chinese translations (17 episodes)
+│   ├── 17-telemetry-privacy-operations.md  # Telemetry, privacy & ops
+│   └── zh-CN/                         # 🇨🇳 Chinese translations (18 episodes)
 │       ├── 00-overview.md
 │       └── ...
 ```
@@ -226,9 +228,10 @@ Permissions are checked at multiple levels: app-level config rules → tool-spec
 - [x] UI & state management — Ink rendering, Vim mode (140+ components)
 - [x] Services & API layer — stream reassembly, MCP servers (12K lines)
 - [x] Infrastructure & config — settings merge, feature flags, telemetry (15K lines)
+- [x] Telemetry, Privacy & Ops — dual-channel analytics, undercover mode, remote killswitches (825 lines)
 
 **Localization**
-- [x] Full bilingual EN/ZH for all 17 episodes
+- [x] Full bilingual EN/ZH for all 18 episodes
 
 ---
 
